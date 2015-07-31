@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    
+    <title>I/ITSEC 2013 Atendees</title>
+    
+    <style type="text/css">
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp">
+    </script>
+    
+    <script type="text/javascript" src="script/markerclusterer.js">
+    </script>
+    
+    <script type="text/javascript" src="locationData/data.json">
+    </script>
+    
+    <script type="text/javascript">
+
+      function initialize() {
+        console.log(data.locations.length);
+        var orlando = new google.maps.LatLng(27.3524, -82.7886);
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+            center: orlando,
+            zoom: 7
+        });
+
+        var mcOptions = {
+            gridSize: 50,
+            maxZoom: 15
+        };
+        
+        var markers = [];
+        for (var i = 0; i < data.count; i++) {
+          var dataLocale = data.locations[i];
+          var latLng = new google.maps.LatLng(dataLocale.Latitude, dataLocale.Longitude);
+
+          var marker = new google.maps.Marker({
+            position: latLng
+          });
+
+          markers.push(marker);
+        }
+
+        var mc = new MarkerClusterer(map, markers, mcOptions);
+      }    
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+  
+</html>
