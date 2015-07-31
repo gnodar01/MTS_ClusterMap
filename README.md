@@ -1,2 +1,2 @@
-# IITSEC_Attendees_ClusterMap
-Clustered Google Map of I/ITSEC 2013 Attendees. 
+# Google Cluster Map
+Clustered Google Map of an MS&T conference event attendees.
